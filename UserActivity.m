@@ -25,6 +25,8 @@ RCT_EXPORT_METHOD(
     activity.webpageURL = [NSURL URLWithString:webpageURL];
     activity.userInfo = userInfo;
 
+    activity.keywords = [NSSet setWithArray:@[title]];
+
     [activity becomeCurrent];
 }
 
