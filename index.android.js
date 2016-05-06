@@ -9,9 +9,9 @@
 var warning = require('fbjs/lib/warning');
 
 var UserActivity = {
-  test: function() {
+  test: function () {
     warning('Not yet implemented for Android.');
-  }
+  },
 };
 
-module.exports = UserActivity;
+export default UserActivity;
