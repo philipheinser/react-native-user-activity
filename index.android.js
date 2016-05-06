@@ -9,7 +9,7 @@
 var warning = require('fbjs/lib/warning');
 
 var UserActivity = {
-  test: function () {
+  createActivity: function () {
     warning('Not yet implemented for Android.');
   },
 };

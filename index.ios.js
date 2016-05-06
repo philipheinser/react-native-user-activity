@@ -3,8 +3,11 @@
  * @flow
  */
 'use strict';
+import React, {
+  NativeModules,
+} from 'react-native';
 
-var NativeUserActivity = require('NativeModules').UserActivity;
+var NativeUserActivity = NativeModules.UserActivity;
 
 /**
  * High-level docs for the UserActivity iOS API can be written here.
