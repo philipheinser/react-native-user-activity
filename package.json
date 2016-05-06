@@ -1,0 +1,14 @@
+{
+  "name": "react-native-user-activity",
+  "version": "0.1.0",
+  "author": "Philip Heinser",
+  "nativePackage": true,
+  "keywords": [
+    "react-native",
+    "react",
+    "nsuseractivity",
+    "activity",
+    "ios"
+  ],
+  "license": "MIT"
+}
