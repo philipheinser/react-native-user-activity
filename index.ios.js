@@ -3,7 +3,7 @@
  * @flow
  */
 'use strict';
-import React, {
+import {
   NativeModules,
 } from 'react-native';
 

@@ -27,6 +27,7 @@ RCT_EXPORT_METHOD(
 
     activity.keywords = [NSSet setWithArray:@[title]];
 
+    self.lastUserActivity = activity;
     [activity becomeCurrent];
 }
 

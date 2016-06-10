@@ -3,4 +3,6 @@
 
 @interface UserActivity : NSObject <RCTBridgeModule>
 
+@property NSUserActivity *lastUserActivity;
+
 @end
