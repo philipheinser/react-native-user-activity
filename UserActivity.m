@@ -15,6 +15,11 @@ RCT_EXPORT_METHOD(
 )
 {
   // Your implementation here
+
+    if(!self.lastUserActivities) {
+      self.lastUserActivities = [@[] mutableCopy];
+    }
+
     NSUserActivity* activity = [[NSUserActivity alloc] initWithActivityType:activityType];
 
     activity.eligibleForSearch = eligibleForSearch;
@@ -28,7 +33,12 @@ RCT_EXPORT_METHOD(
     activity.keywords = [NSSet setWithArray:@[title]];
 
     self.lastUserActivity = activity;
+    [self.lastUserActivities addObject:activity];
     [activity becomeCurrent];
+
+    if (self.lastUserActivities.count > 5) {
+      [self.lastUserActivities removeObjectAtIndex:0];
+    }
 }
 
 @end
