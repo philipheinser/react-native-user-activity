@@ -16,7 +16,7 @@ RCT_EXPORT_METHOD(
 )
 {
   // Your implementation here
-  if([NSUserActivity class]){
+  if([NSUserActivity class] && [NSUserActivity instancesRespondToSelector:@selector(setEligibleForSearch:)]){
 
     if(!self.lastUserActivities) {
       self.lastUserActivities = [@[] mutableCopy];
