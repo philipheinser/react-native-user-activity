@@ -13,6 +13,10 @@ RCT_EXPORT_METHOD(
            title:(NSString *)title
       webpageURL:(NSString *)webpageURL
         userInfo:(NSDictionary *)userInfo
+    locationInfo:(NSDictionary *)locationInfo
+supportsNavigation:(BOOL)supportsNavigation
+supportsPhoneCall:(BOOL)supportsPhoneCall
+      phoneNumber:(NSString *)phoneNumber
 )
 {
   // Your implementation here
@@ -38,7 +42,19 @@ RCT_EXPORT_METHOD(
         CSSearchableItemAttributeSet *contentSet = [[CSSearchableItemAttributeSet alloc] initWithItemContentType:activityType];
         contentSet.title = title;
         contentSet.URL = [NSURL URLWithString:webpageURL];
+        if (phoneNumber) {
+            contentSet.phoneNumbers = @[phoneNumber];
+        }
+        contentSet.supportsNavigation = @(supportsNavigation);
+        contentSet.supportsPhoneCall = @(supportsPhoneCall);
         activity.contentAttributeSet = contentSet;
+    }
+    if ([activity respondsToSelector:@selector(mapItem)] && [locationInfo objectForKey:@"lat"] && [locationInfo objectForKey:@"lon"]) {
+        MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:CLLocationCoordinate2DMake([locationInfo[@"lat"] doubleValue], [locationInfo[@"lon"] doubleValue])];
+        MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
+        mapItem.name = title;
+        mapItem.url = [NSURL URLWithString:webpageURL];
+        activity.mapItem = mapItem;
     }
 
     self.lastUserActivity = activity;
