@@ -62,6 +62,8 @@ supportsPhoneCall:(BOOL)supportsPhoneCall
         contentSet.supportsPhoneCall = @(supportsPhoneCall);
         activity.contentAttributeSet = contentSet;
     }
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000
     if ([activity respondsToSelector:@selector(mapItem)] && [locationInfo objectForKey:@"lat"] && [locationInfo objectForKey:@"lon"]) {
         MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:CLLocationCoordinate2DMake([locationInfo[@"lat"] doubleValue], [locationInfo[@"lon"] doubleValue])];
         MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
@@ -69,6 +71,7 @@ supportsPhoneCall:(BOOL)supportsPhoneCall
         mapItem.url = [NSURL URLWithString:webpageURL];
         activity.mapItem = mapItem;
     }
+#endif
 
     self.lastUserActivity = activity;
     [self.lastUserActivities addObject:activity];
