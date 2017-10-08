@@ -18,6 +18,9 @@ RCT_EXPORT_METHOD(
 supportsNavigation:(BOOL)supportsNavigation
 supportsPhoneCall:(BOOL)supportsPhoneCall
       phoneNumber:(NSString *)phoneNumber
+      description:(NSString *)description
+     thumbnailURL:(NSString *)thumbnailURL
+       identifier:(NSString *)identifier
 )
 {
   // Your implementation here
@@ -43,6 +46,15 @@ supportsPhoneCall:(BOOL)supportsPhoneCall
         CSSearchableItemAttributeSet *contentSet = [[CSSearchableItemAttributeSet alloc] initWithItemContentType:activityType];
         contentSet.title = title;
         contentSet.URL = [NSURL URLWithString:webpageURL];
+        if (description) {
+            contentSet.contentDescription = description;
+        }
+        if (thumbnailURL) {
+            contentSet.thumbnailURL = [NSURL fileURLWithPath:thumbnailURL];
+        }
+        if (identifier) {
+            contentSet.identifier = identifier;
+        }
         if (phoneNumber) {
             contentSet.phoneNumbers = @[phoneNumber];
         }
