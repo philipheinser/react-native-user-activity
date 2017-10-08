@@ -41,7 +41,10 @@ componentDidMount() {
     },
     supportsNavigation: true,
     supportsPhoneCall: true,
-    phoneNumber: '...'
+    phoneNumber: '...',
+    description: 'sample description that is not necessary',
+    thumbnailURL: 'thumbnail url that is not necessary',
+    identifier: 'identifier that is not necessary'
   });
 }
 ```
