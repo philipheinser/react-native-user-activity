@@ -1,5 +1,6 @@
 #import "UserActivity.h"
 @import CoreSpotlight;
+@import MapKit;
 
 @implementation UserActivity
 
