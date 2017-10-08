@@ -20,7 +20,11 @@ var NativeUserActivity = NativeModules.UserActivity;
    eligibleForHandoff: boolean,
    title: string,
    webpageURL: string,
-   userInfo: any
+   userInfo: any,
+   locationInfo: any,
+   supportsNavigation: boolean,
+   supportsPhoneCall: boolean,
+   phoneNumber: string
  };
 
 var UserActivity = {
@@ -32,7 +36,11 @@ var UserActivity = {
       options.eligibleForHandoff,
       options.title,
       options.webpageURL,
-      options.userInfo
+      options.userInfo,
+      options.locationInfo,
+      options.supportsNavigation || false,
+      options.supportsPhoneCall || false,
+      options.phoneNumber
     );
   },
 };
