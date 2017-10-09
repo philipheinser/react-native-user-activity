@@ -24,7 +24,10 @@ var NativeUserActivity = NativeModules.UserActivity;
    locationInfo: any,
    supportsNavigation: boolean,
    supportsPhoneCall: boolean,
-   phoneNumber: string
+   phoneNumber: string,
+   description: string,
+   thumbnailURL: string,
+   identifier: string
  };
 
 var UserActivity = {
@@ -40,7 +43,10 @@ var UserActivity = {
       options.locationInfo,
       options.supportsNavigation || false,
       options.supportsPhoneCall || false,
-      options.phoneNumber
+      options.phoneNumber,
+      options.description,
+      options.thumbnailURL,
+      options.identifier
     );
   },
 };

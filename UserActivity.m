@@ -1,5 +1,6 @@
 #import "UserActivity.h"
 @import CoreSpotlight;
+@import MapKit;
 
 @implementation UserActivity
 
@@ -17,6 +18,9 @@ RCT_EXPORT_METHOD(
 supportsNavigation:(BOOL)supportsNavigation
 supportsPhoneCall:(BOOL)supportsPhoneCall
       phoneNumber:(NSString *)phoneNumber
+      description:(NSString *)description
+     thumbnailURL:(NSString *)thumbnailURL
+       identifier:(NSString *)identifier
 )
 {
   // Your implementation here
@@ -42,6 +46,15 @@ supportsPhoneCall:(BOOL)supportsPhoneCall
         CSSearchableItemAttributeSet *contentSet = [[CSSearchableItemAttributeSet alloc] initWithItemContentType:activityType];
         contentSet.title = title;
         contentSet.URL = [NSURL URLWithString:webpageURL];
+        if (description) {
+            contentSet.contentDescription = description;
+        }
+        if (thumbnailURL) {
+            contentSet.thumbnailURL = [NSURL fileURLWithPath:thumbnailURL];
+        }
+        if (identifier) {
+            contentSet.identifier = identifier;
+        }
         if (phoneNumber) {
             contentSet.phoneNumbers = @[phoneNumber];
         }
@@ -49,6 +62,8 @@ supportsPhoneCall:(BOOL)supportsPhoneCall
         contentSet.supportsPhoneCall = @(supportsPhoneCall);
         activity.contentAttributeSet = contentSet;
     }
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000
     if ([activity respondsToSelector:@selector(mapItem)] && [locationInfo objectForKey:@"lat"] && [locationInfo objectForKey:@"lon"]) {
         MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:CLLocationCoordinate2DMake([locationInfo[@"lat"] doubleValue], [locationInfo[@"lon"] doubleValue])];
         MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
@@ -56,6 +71,7 @@ supportsPhoneCall:(BOOL)supportsPhoneCall
         mapItem.url = [NSURL URLWithString:webpageURL];
         activity.mapItem = mapItem;
     }
+#endif
 
     self.lastUserActivity = activity;
     [self.lastUserActivities addObject:activity];
