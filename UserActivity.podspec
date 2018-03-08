@@ -4,7 +4,6 @@ Pod::Spec.new do |s|
   s.source_files  = "UserActivity.h", "UserActivity.m"
   s.author          = { "Philip Heinser" => "philipheinser@me.com" }
   s.ios.deployment_target = '8.0'
-  s.tvos.deployment_target = '9.0'
   s.license       = "MIT"
   s.summary       = "NSUserActivity for React Native"
   s.homepage      = "https://github.com/philipheinser/react-native-user-activity"
