@@ -1,36 +1,29 @@
-/**
- * @providesModule UserActivity
- * @flow
- */
-'use strict';
-import {
-  NativeModules,
-} from 'react-native';
+import { NativeModules } from 'react-native';
 
-var NativeUserActivity = NativeModules.UserActivity;
+const NativeUserActivity = NativeModules.UserActivity;
 
 /**
  * High-level docs for the UserActivity iOS API can be written here.
  */
 
- type ActivityOptions = {
-   activityType: string,
-   eligibleForSearch: boolean,
-   eligibleForPublicIndexing: boolean,
-   eligibleForHandoff: boolean,
-   title: string,
-   webpageURL: string,
-   userInfo: any,
-   locationInfo: any,
-   supportsNavigation: boolean,
-   supportsPhoneCall: boolean,
-   phoneNumber: string,
-   description: string,
-   thumbnailURL: string,
-   identifier: string
- };
+type ActivityOptions = {
+  activityType: string;
+  eligibleForSearch: boolean;
+  eligibleForPublicIndexing: boolean;
+  eligibleForHandoff: boolean;
+  title: string;
+  webpageURL: string;
+  userInfo: any;
+  locationInfo: any;
+  supportsNavigation: boolean;
+  supportsPhoneCall: boolean;
+  phoneNumber: string;
+  description: string;
+  thumbnailURL: string;
+  identifier: string;
+};
 
-var UserActivity = {
+const UserActivity = {
   createActivity: function (options: ActivityOptions) {
     NativeUserActivity.createActivity(
       options.activityType,
