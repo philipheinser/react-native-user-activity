@@ -4,9 +4,8 @@
  * @providesModule UserActivity
  * @flow
  */
-'use strict';
 
-var UserActivity = {
+const UserActivity = {
   createActivity: function () {
     console.log('Not yet implemented for Android.');
   },
